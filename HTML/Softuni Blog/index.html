@@ -9,9 +9,10 @@
 	<script src="scripts/jquery-1.10.2.js"></script>
 	<script src="scripts/bootstrap.js"></script>
 
+
 </head>
 
-<header>
+<header id="index.header">
 
 	<div class="navbar navbar-default navbar-fixed-top text-uppercase">
 		<div class="container">
@@ -39,7 +40,7 @@
 
 </header>
 
-<main>
+<main id="index.main">
 	<div class="container body-content">
 
 		<div class="row">
@@ -69,7 +70,7 @@
 
 						<div class="pull-right">
 
-							<a href="viewpost1.html" class="btn btn-default btn-xs">Read more &raquo;</a>
+							<button id="first_readmoreBtn" class="btn btn-default btn-xs">Read more &raquo;</button>
 
 						</div>
 
@@ -80,7 +81,7 @@
 
 			</div>
 
-			<div class="col-md-6">
+			<div class="col-md-6" id = "second_div">
 
 				<article>
 
@@ -130,4 +131,5 @@
 	</div>
 </footer>
 
+<script src="scripts/readmoreScript.js"></script>
 </html>
