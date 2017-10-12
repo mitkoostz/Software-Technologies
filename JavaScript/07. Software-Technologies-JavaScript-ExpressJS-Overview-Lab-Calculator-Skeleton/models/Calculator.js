@@ -8,20 +8,21 @@ function Calculator(leftop, op, rightop) {
 
         let result = 0;
 
-        switch (op) {
+        switch (this.op) {
             case "+":
-                result = leftop + rightop;
+                result = this.leftop + this.rightop;
                 break;
             case "-":
-                result = leftop - rightop;
+                result = this.leftop - this.rightop;
                 break;
             case "*":
-                result = leftop * rightop;
+                result = this.leftop * this.rightop;
                 break;
             case "/":
-                result = leftop / rightop;
+                result = this.leftop / this.rightop;
                 break;
         }
+        return result;
     }
 }
 
