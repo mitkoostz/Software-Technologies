@@ -1,0 +1,11 @@
+D:\Softuni\Software-Technologies\C# ASP.NET\FirstConsoleAPP.net\FirstConsoleAPP.net\bin\Debug\FirstConsoleAPP.net.exe.config
+D:\Softuni\Software-Technologies\C# ASP.NET\FirstConsoleAPP.net\FirstConsoleAPP.net\bin\Debug\FirstConsoleAPP.net.exe
+D:\Softuni\Software-Technologies\C# ASP.NET\FirstConsoleAPP.net\FirstConsoleAPP.net\bin\Debug\FirstConsoleAPP.net.pdb
+D:\Softuni\Software-Technologies\C# ASP.NET\FirstConsoleAPP.net\FirstConsoleAPP.net\bin\Debug\EntityFramework.dll
+D:\Softuni\Software-Technologies\C# ASP.NET\FirstConsoleAPP.net\FirstConsoleAPP.net\bin\Debug\EntityFramework.SqlServer.dll
+D:\Softuni\Software-Technologies\C# ASP.NET\FirstConsoleAPP.net\FirstConsoleAPP.net\bin\Debug\EntityFramework.xml
+D:\Softuni\Software-Technologies\C# ASP.NET\FirstConsoleAPP.net\FirstConsoleAPP.net\bin\Debug\EntityFramework.SqlServer.xml
+D:\Softuni\Software-Technologies\C# ASP.NET\FirstConsoleAPP.net\FirstConsoleAPP.net\obj\Debug\FirstConsoleAPP.net.csprojResolveAssemblyReference.cache
+D:\Softuni\Software-Technologies\C# ASP.NET\FirstConsoleAPP.net\FirstConsoleAPP.net\obj\Debug\FirstConsoleAPP.net.csproj.CoreCompileInputs.cache
+D:\Softuni\Software-Technologies\C# ASP.NET\FirstConsoleAPP.net\FirstConsoleAPP.net\obj\Debug\FirstConsoleAPP.net.exe
+D:\Softuni\Software-Technologies\C# ASP.NET\FirstConsoleAPP.net\FirstConsoleAPP.net\obj\Debug\FirstConsoleAPP.net.pdb
