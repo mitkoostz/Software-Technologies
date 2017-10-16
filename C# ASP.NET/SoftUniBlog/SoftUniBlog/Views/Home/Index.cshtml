@@ -1,0 +1,105 @@
+﻿@model IEnumerable<SoftUniBlog.Models.Article>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1><b>Most viewed :</b></h1><br />
+
+
+<div class="container">
+    <div class="row">
+
+        @{var counter = 0;}
+        @foreach (var item in Model)
+        {
+            counter++;
+            if (counter % 2 == 1)
+            {
+                <div class="col-md-5">
+                    <h2>@Html.DisplayFor(modelItem => item.Tittle)</h2>
+                    <blockquote>
+                        <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                        <footer>
+                            @if (item.Author != null)
+                            {<b>by: </b>@Html.DisplayFor(modelIem => item.Author.FullName)}
+                            posted on @Html.DisplayFor(modelItem => item.Data)
+                        </footer>
+                    </blockquote>
+                    @try
+                    {
+                        if (this.User.Identity.Name == item.Author.UserName)
+                        {
+                            <p>
+                                <a href="/Home/Delete/@item.Id" class="btn btn-danger" role="button">Delete</a>
+                                <a href="/Home/Edit/@item.Id" class="btn btn-default" role="button">Edit</a>
+                            </p>
+
+                        }
+
+                    }catch(Exception){ }
+
+                        
+                </div>
+
+            }
+
+        }
+
+        @{counter = 0;}
+        @foreach (var item in Model)
+        {
+
+            counter++;
+            if (counter % 2 == 0)
+            {
+                <div class="col-md-5">
+                    <h2>@Html.DisplayFor(modelItem => item.Tittle)</h2>
+                    <blockquote>
+                        <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                        <footer>
+                            @if (item.Author != null)
+                            {<b>by: </b>@Html.DisplayFor(modelIem => item.Author.FullName)}
+                            posted on @Html.DisplayFor(modelItem => item.Data)
+                        </footer>
+                    </blockquote>
+                    @try
+                    {
+                        if (this.User.Identity.Name == item.Author.UserName)
+                        {
+
+                            <p><a href="/Home/Delete/@item.Id" class="btn btn-danger" role="button">Delete</a>
+                            <a href="/Home/Edit/@item.Id" class="btn btn-default" role="button">Edit</a></p>
+
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+
+                    }
+                   
+                </div>
+            }
+
+        }
+
+    </div>
+</div>
+
+@if (Request.IsAuthenticated)
+{
+    <a href="/Home/Create"><b>Add new</b></a>
+
+}
+
+
+
+
+
+
+
+
+
+
+
