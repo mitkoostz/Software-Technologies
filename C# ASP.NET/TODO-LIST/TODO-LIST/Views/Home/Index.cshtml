@@ -1,0 +1,99 @@
+﻿@model IEnumerable<TODO_LIST.Models.Task> 
+
+@{
+    var rd = new Random();
+    ViewBag.Title = "Home Page";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+
+<br />
+
+
+<body style="background-color:deepskyblue;">
+
+    @{ //Random Alert Background method
+      //var random = new random()- stays At the top of VIEW!
+           string RandomBackground()
+           {
+
+
+               switch (rd.Next(1, 6))
+               {
+                   case 1:
+                       return "#32B92D";
+                       break;
+                   case 2:
+                       return "#FF6EB0";
+                       break;
+                   case 3:
+                       return "#FFCB00";
+                       break;
+                   case 4:
+                       return "#93228D";
+                       break;
+                   case 5:
+                       return "#B84B9E";
+                       break;
+                   default:
+                       return "#B84B9E";
+                       break;
+               }
+           }
+    }
+    <ul>
+        @foreach (var task in Model)
+        {
+            <li class="col-md-4 odd" id="Alert"  >
+
+                <div class="alert alert-info alert-dismissable"  style=" border-radius:30px; background-color:@RandomBackground();" id="@task.Id">
+                    
+                    <script>
+                        element = document.getElementById(@task.Id);
+
+                        element.addEventListener("mouseover", function () {
+
+                            let item = document.getElementById(@task.Id);
+
+                            item.style.border = "6px solid black";
+
+                           
+                            
+
+
+
+                        });
+                        element.addEventListener("mouseout", function () {
+
+                           let item = document.getElementById(@task.Id);
+
+                           item.style.border = "";
+                           
+
+                        });
+
+                    </script>
+
+                    <a href="Home/Delete/@task.Id" class="close" data-dismiss="alert"  id="alert_close" aria-label="close"
+                       style="color:black"><b>X</b></a>
+
+                    <header class="text-center" style="font:bold 30px arial; color:#000066">
+                        <strong>@task.Tittle</strong>
+                    </header>
+                    <br />
+
+                    <main class="text-center" style="font:25px arial; color:#00284d">
+                        @task.Comment
+                    </main>
+
+                </div>
+
+            </li>
+
+        }
+    </ul>
+</body>
+<script src="~/Scripts/AlertMouseOver.js"></script>
+<link href="~/Content/Site.css" rel="stylesheet" />
+

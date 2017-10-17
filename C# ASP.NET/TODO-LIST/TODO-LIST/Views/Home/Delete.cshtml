@@ -1,0 +1,54 @@
+﻿@model TODO_LIST.Models.Task
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<body style="background-color:deepskyblue;">
+
+    @*try/catch - error while clicking Cancel button*@
+    @try
+    {
+
+        <h1><b>Delete</b></h1>
+
+        <h2>Are you sure you want to delete this Task?</h2>
+        <div>
+           
+            <br />
+
+            <div class="alert alert-info alert-dismissable" style="width:300px; border-radius:30px; background-color:red">
+
+
+
+                <header class="text-center" style="font:bold 30px arial; color:black">
+                    <strong>@Model.Tittle</strong>
+                </header>
+                <br />
+
+                <main class="text-center" style="font:25px arial; color:black">
+                    @Model.Comment
+                </main>
+
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input type="submit" style="width:100px;height:50px;" value="Delete" class="btn btn-danger" />
+                    <a href="../../" style="width:100px;height:50px;" class="btn btn-primary">Cancel</a>
+                </div>
+            }
+        </div>
+
+    }
+    catch (Exception)
+    {
+
+
+    }
+
+</body>
+

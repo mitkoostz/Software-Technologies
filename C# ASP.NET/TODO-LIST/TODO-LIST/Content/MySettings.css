@@ -1,0 +1,27 @@
+﻿body {
+}
+
+
+textarea{
+    width: 450px;
+    height: 250px;
+    font-size: 35px;
+    font-family:Arial;
+}
+#Tittle_Label{
+    padding-bottom:30px;
+    font-size: 35px;
+}
+#Comment_Label{
+    font-size:35px;
+
+}
+
+#Tittle{
+    font-size:50px;
+    padding-bottom:70px;
+    padding-top:50px;
+    text-align:left;
+    
+   
+}
