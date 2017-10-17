@@ -27,14 +27,14 @@
                         @Html.LabelFor(model => model.Tittle, htmlAttributes: new { @class = "control-label col-md-2", @id = "Tittle_Label" })
 
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Tittle, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Tittle, new { htmlAttributes = new { @class = "form-control"} })
                             @Html.ValidationMessageFor(model => model.Tittle, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <br />
                     <br />
                     <div class="form-group">
-                        @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2", @id = "Comment_Label" })
+                        <b>@Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2", @style = "font:25px arial", @id = "Comment_Label" })</b>
                         <div class="col-md-10">
                             @Html.TextAreaFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control", id = "AddNew_textArea" } })
                             @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
@@ -57,11 +57,11 @@
 
 
                     <header class="text-center" style="font:bold 30px arial; color:#000066">
-                        <strong>Tittle</strong>
+                        <strong id="Tittle_showed">Tittle</strong>
                     </header>
                     <br />
 
-                    <main class="text-center" style="font:25px arial; color:#00284d">
+                    <main class="text-center" id="Comment_showed" style="font:25px arial; color:#00284d">
                         Comment
                     </main>
 
@@ -74,6 +74,7 @@
 </body>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    
+    @Scripts.Render("~/bundles/jqueryval")    
+<script src="~/Scripts/AddNewAlert.js"></script>
+
 }
