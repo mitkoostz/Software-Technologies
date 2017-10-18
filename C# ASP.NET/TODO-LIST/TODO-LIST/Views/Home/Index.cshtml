@@ -10,90 +10,127 @@
 
 <br />
 
+@if (Request.IsAuthenticated)
+{
+    <body style="background-color:deepskyblue;">
 
-<body style="background-color:deepskyblue;">
-
-    @{ //Random Alert Background method
-      //var random = new random()- stays At the top of VIEW!
-           string RandomBackground()
-           {
+        @{ //Random Alert Background method
+            //var random = new random()- stays At the top of VIEW!
+            string RandomBackground()
+            {
 
 
-               switch (rd.Next(1, 6))
-               {
-                   case 1:
-                       return "#32B92D";
-                       break;
-                   case 2:
-                       return "#FF6EB0";
-                       break;
-                   case 3:
-                       return "#FFCB00";
-                       break;
-                   case 4:
-                       return "#93228D";
-                       break;
-                   case 5:
-                       return "#B84B9E";
-                       break;
-                   default:
-                       return "#B84B9E";
-                       break;
-               }
-           }
-    }
-    <ul>
-        @foreach (var task in Model)
-        {
-            <li class="col-md-4 odd" id="Alert"  >
+                switch (rd.Next(1, 6))
+                {
+                    case 1:
+                        return "#32B92D";
+                        break;
+                    case 2:
+                        return "#FF6EB0";
+                        break;
+                    case 3:
+                        return "#FFCB00";
+                        break;
+                    case 4:
+                        return "#93228D";
+                        break;
+                    case 5:
+                        return "#B84B9E";
+                        break;
+                    default:
+                        return "#B84B9E";
+                        break;
+                }
+            }
+        }
+        <ul>
+            @foreach (var task in Model)
+            {
+                <li class="col-md-4 odd" id="Alert">
 
-                <div class="alert alert-info alert-dismissable"  style=" border-radius:30px; background-color:@RandomBackground();" id="@task.Id">
-                    
-                    <script>
-                        element = document.getElementById(@task.Id);
+                    <div class="alert alert-info alert-dismissable" onclick="GetID(@task.Id)" style=" border-radius:30px; background-color:@RandomBackground();" id="@task.Id">
+
+                        <script>
+                            element = document.getElementById(@task.Id);   
+
+                       
 
                         element.addEventListener("mouseover", function () {
 
                             let item = document.getElementById(@task.Id);
 
-                            item.style.border = "6px solid black";
-
-                           
-                            
+                            item.style.border = "6px solid black";                         
+                            });
 
 
-
-                        });
                         element.addEventListener("mouseout", function () {
 
                            let item = document.getElementById(@task.Id);
 
                            item.style.border = "";
-                           
+
 
                         });
 
-                    </script>
+                        </script>
 
-                    <a href="Home/Delete/@task.Id" class="close" data-dismiss="alert"  id="alert_close" aria-label="close"
-                       style="color:black"><b>X</b></a>
+                      
 
-                    <header class="text-center" style="font:bold 30px arial; color:#000066">
-                        <strong>@task.Tittle</strong>
-                    </header>
-                    <br />
+                        <a href="Home/Delete/@task.Id" class="close" data-dismiss="alert" id="alert_close" aria-label="close"
+                           style="color:black"><b>X</b></a>
+                        <header class="text-center" style="font:bold 30px arial; color:#000066">
+                            <strong>@task.Tittle</strong>
+                        </header>
 
-                    <main class="text-center" style="font:25px arial; color:#00284d">
-                        @task.Comment
-                    </main>
+                        <br />
 
-                </div>
+                        <main class="text-center" style="font:25px arial; color:#00284d">
+                            @task.Comment
+                        </main>
+                        <br />
+                        <br />
+                        <footer> </footer>
+                        <b style="position:fixed; ">@task.date</b>
+                    </div>
 
-            </li>
+                </li>
 
-        }
-    </ul>
-</body>
-<script src="~/Scripts/AlertMouseOver.js"></script>
+            }
+        </ul>
+
+    </body>
+ }
+ else
+  {
+                <body style="background-color:deepskyblue;">
+                    <div class="container">
+                        <div class="jumbotron" style="background-color:#33FF33  ;border-radius:150px;">
+                            <h1 style="text-align:center">Welcome to <b>TO-DO LIST</b></h1><br />
+
+                            <p style="text-align:center">
+                               <b>To-Do LIST</b> is a site where you can 
+                                make your daily tasks. Start now and create your first task!
+                                Mark every task you have made  and get history what you have  made last mounths!                                                         
+                            </p>
+
+                            <div style="width:35%; margin: 0 auto;  text-align:center;">
+                                <a href="../Account/Login"  @*class="btn btn-success"*@ style="width:120px;height:50px;border-radius:15px;" >Sign In </a>
+                                <br />
+                                <a href="../Account/Register"  @*class="btn btn-info"*@ style="width:120px;height:50px;border-radius:15px; ">Register</a>
+                            </div>
+
+                        </div>
+                        
+                       
+                    </div>
+                </body>
+          
+    }
+
+ 
+ 
+<link href="~/Content/Modal.css" rel="stylesheet" />
+<script src="~/Scripts/Modal.js"></script>
+ <script src="~/Scripts/AlertMouseOver.js"></script>
 <link href="~/Content/Site.css" rel="stylesheet" />
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TODO_LIST.Models;
+using Microsoft.AspNet.Identity;
 
 namespace TODO_LIST.Controllers
 {
@@ -13,40 +14,64 @@ namespace TODO_LIST.Controllers
         {
             using (var db = new ApplicationDbContext())
             {
+                var currentUserId = this.User.Identity.GetUserId();
+
+                var UserTasks = db.Tasks.Where(t => t.UserId == currentUserId).ToList();
                 
-                return View(db.Tasks.ToList());
+                return View(UserTasks);
             }
             
         }
 
+        [Authorize]
         public ActionResult AddNew()
         {
             return View();
         }
 
+        public ActionResult Modal()
+        {
+            return View();
+        }
+
+        [Authorize]
         [HttpPost , ActionName("AddNew")]
         public ActionResult AddNewConfirm(Task task)
         {
             using (var db =  new ApplicationDbContext())
-            {               
+            {
+
+                task.UserId = this.User.Identity.GetUserId();
+
                 db.Tasks.Add(task);
                 db.SaveChanges();
             }
             return RedirectToAction("Index");
         }
 
+        
         public ActionResult Delete(int? id)
         {
-            
+            if(id == null)
+            {
+                return RedirectToAction("Index");
+            }
+
             using (var db = new ApplicationDbContext())
             {
                 var task = db.Tasks.Find(id);
+
+                if(task.UserId != this.User.Identity.GetUserId())
+                {
+                    return HttpNotFound();
+                }
 
                 return View(task);
             }
             
         }
 
+        [Authorize]
         [HttpPost,ActionName("Delete")]
         public ActionResult DeleteConfirm(int? id)
         {
@@ -56,6 +81,17 @@ namespace TODO_LIST.Controllers
                 db.Tasks.Remove(task);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+        }
+
+
+        public ActionResult ViewAlert(int? id)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var task = db.Tasks.Find(id);
+                return View(task);
+
             }
         }
 

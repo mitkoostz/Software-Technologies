@@ -18,5 +18,18 @@ namespace TODO_LIST.Models
         [StringLength(100)]
         public string Comment { get; set; }
 
+        public DateTime date { get; set; }
+
+        public bool IsMade { get; set; }
+
+        public string  UserId { get; set; }
+
+        public Task()
+        {
+
+            this.IsMade = false;
+            this.date = DateTime.Now;
+        }
+
     }
 }
