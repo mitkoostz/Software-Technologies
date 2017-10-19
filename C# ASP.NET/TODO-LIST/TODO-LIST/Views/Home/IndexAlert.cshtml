@@ -1,0 +1,218 @@
+﻿@model IEnumerable<TODO_LIST.Models.Task> 
+
+
+@{
+    var rd = new Random();
+    ViewBag.Title = "Home Page";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+
+<br />
+
+@if (Request.IsAuthenticated)
+{
+    <body style="background-color:deepskyblue;">
+
+        @{ //Random Alert Background method
+            //var random = new random() - stays At the top of VIEW!
+            string RandomBackground()
+            {
+
+
+                switch (rd.Next(1, 6))
+                {
+                    case 1:
+                        return "#32B92D";
+                        break;
+                    case 2:
+                        return "#FF6EB0";
+                        break;
+                    case 3:
+                        return "#FFCB00";
+                        break;
+                    case 4:
+                        return "#93228D";
+                        break;
+                    case 5:
+                        return "#B84B9E";
+                        break;
+                    default:
+                        return "#B84B9E";
+                        break;
+                }
+            }
+        }
+
+        @*Just show the background behind Opened Alert*@
+        <ul>
+            @foreach (var task in Model)
+            {
+                <li class="col-md-4 odd" id="Alert">
+
+                    <div class="alert alert-info alert-dismissable"  style=" border-radius:30px; background-color:#32B92D;" id="@task.Id">
+
+                        <script>
+                            element = document.getElementById(@task.Id);   
+
+                       
+
+                        element.addEventListener("mouseover", function () {
+
+                            let item = document.getElementById(@task.Id);
+
+                            item.style.border = "6px solid black";                         
+                            });
+
+
+                        element.addEventListener("mouseout", function () {
+
+                           let item = document.getElementById(@task.Id);
+
+                           item.style.border = "";
+
+
+                        });
+
+                        </script>
+
+                      
+
+                        <a href="Home/Delete/@task.Id" class="close" data-dismiss="alert" id="alert_close" aria-label="close"
+                           style="color:black"><b>X</b></a>
+                        <header class="text-center" style="font:bold 30px arial; color:#000066">
+                            <strong>@task.Tittle</strong>
+                        </header>
+                        <main class="text-center" style="font:25px arial; color:#00284d">
+                            @task.Comment
+                            <br />                        
+                        </main>
+                        <br />
+                        <br />
+                        
+                    </div>
+
+                </li>
+
+            }
+        </ul>
+
+
+
+
+       @*Show the Alert WINDOW!*@       
+       @*ViewBag item - TASK*@                           
+        <div id="myModal" class="modal">
+            
+                @*AlertStart*@
+
+           
+                    <div class="alert alert-info alert-dismissable" style="
+ border-radius:30px;
+ position: absolute;
+    top: 25%;
+    left: 30%;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 700px;
+    height: 350px;
+    background-color:#32B92D;
+    position:relative;"
+                         id="@ViewBag.Task.Id">
+
+
+                        <a href="../../" class="close" data-dismiss="alert" id="alert_close" aria-label="close"
+                           style="color:black"><b>X</b></a>
+
+                        <span style="position: absolute;top: 5px;left:10px;font: 15px arial bold; color:black; ">@ViewBag.Task.date</span>
+
+                            <header class="text-center" style="font:bold 60px arial; color:#000066">
+                                <strong>@ViewBag.Task.Tittle</strong>
+                            </header>
+
+                            <br />
+
+                            <main class="text-center" style="font:40px arial; color:#00284d">
+                                @ViewBag.Task.Comment
+                                <br />
+                             
+
+                              @using (Html.BeginForm())
+                              {
+
+                              
+
+                                @*DELETE BUTTON*@
+                                <span id="alert_btn_delete" style="position: absolute;bottom: 20px;left: 150px;">
+                                    <button type="submit" style="width:120px;height:60px; border-radius:15px; font: 22px arial bold" class="btn btn-danger">Delete</button>
+                                </span>
+
+                                @*SUCCESS BUTON*@
+                                <span id="alert_btn_succes" style="position: absolute;bottom: 20px;right: 170px;">
+                                    <button type="button" style="width:120px;height:60px; border-radius:15px; font: 22px arial bold" class="btn btn-primary">Success</button>
+                                </span>
+                                @*BACK BUTTON*@
+                                <div id="alert_btn_back" style="position: absolute;bottom: 20px;right: 300px;">
+                                    <button type="button" style="width:120px;height:60px; border-radius:15px; font: 22px arial bold; text-align:center;" class="btn btn-info">Back</button>
+                                </div>
+                              }
+
+                            </main>
+
+
+
+</div>
+          
+
+               @*AlertEnd*@
+            @*</div>*@
+
+        </div>
+            
+        <script>
+                        let modal =
+                            document.getElementById("myModal");
+            
+                            console.log(modal);
+                            modal.style.display = "block";
+                        
+        </script>
+
+    </body>
+ }
+ else
+  {
+                <body style="background-color:deepskyblue;">
+                    <div class="container">
+                        <div class="jumbotron" style="background-color:#33FF33  ;border-radius:150px;">
+                            <h1 style="text-align:center">Welcome to <b>TO-DO LIST</b></h1><br />
+
+                            <p style="text-align:center">
+                               <b>To-Do LIST</b> is a site where you can 
+                                make your daily tasks. Start now and create your first task!
+                                Mark every task you have made  and get history what you have  made last mounths!                                                         
+                            </p>
+
+                            <div style="width:35%; margin: 0 auto;  text-align:center;">
+                                <a href="../Account/Login"  @*class="btn btn-success"*@ style="width:120px;height:50px;border-radius:15px;" >Sign In </a>
+                                <br />
+                                <a href="../Account/Register"  @*class="btn btn-info"*@ style="width:120px;height:50px;border-radius:15px; ">Register</a>
+                            </div>
+
+                        </div>
+                        
+                       
+                    </div>
+                </body>
+          
+    }
+
+ 
+
+
+<link href="~/Content/AlertModal.css" rel="stylesheet" />
+<script src="~/Scripts/ViewAlert.js"></script>
+ <script src="~/Scripts/AlertMouseOver.js"></script>
+<link href="~/Content/Site.css" rel="stylesheet" />
+

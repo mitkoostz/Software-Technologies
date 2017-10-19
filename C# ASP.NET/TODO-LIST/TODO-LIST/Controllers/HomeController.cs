@@ -40,6 +40,23 @@ namespace TODO_LIST.Controllers
             }
             
         }
+        [HttpPost , ActionName("Index")]
+        public ActionResult DeleteAlert(int? id)
+        {
+            using (var db = new ApplicationDbContext())
+            {               
+                var task = db.Tasks.Find(id);
+                db.Tasks.Remove(task);
+                db.SaveChanges();
+
+                var currentUserId = this.User.Identity.GetUserId();
+                var UserTasks = db.Tasks.Where(t => t.UserId == currentUserId).ToList();
+
+                return Redirect("http://localhost:55342");
+            }
+
+        }
+        
 
         [Authorize]
         public ActionResult AddNew()
