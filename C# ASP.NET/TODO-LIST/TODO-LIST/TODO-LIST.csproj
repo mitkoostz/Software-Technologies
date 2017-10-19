@@ -269,8 +269,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\AddNew.cshtml" />
     <Content Include="Views\Home\Delete.cshtml" />
-    <Content Include="Views\Home\ViewAlert.cshtml" />
     <Content Include="Views\Home\IndexAlert.cshtml" />
+    <Content Include="Views\Home\Finished.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

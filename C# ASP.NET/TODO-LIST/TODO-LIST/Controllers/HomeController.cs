@@ -19,7 +19,7 @@ namespace TODO_LIST.Controllers
                 {
                     var currentUserId = this.User.Identity.GetUserId();
 
-                    var UserTasks = db.Tasks.Where(t => t.UserId == currentUserId).ToList();
+                    var UserTasks = db.Tasks.Where(t => t.UserId == currentUserId && t.IsMade == false).ToList();
 
                     ViewBag.Task = db.Tasks.Find(id);
 
@@ -34,12 +34,13 @@ namespace TODO_LIST.Controllers
             {
                 var currentUserId = this.User.Identity.GetUserId();
 
-                var UserTasks = db.Tasks.Where(t => t.UserId == currentUserId).ToList();
+                var UserTasks = db.Tasks.Where(t => t.UserId == currentUserId && t.IsMade == false).ToList();
                 
                 return View(UserTasks);
             }
             
         }
+
         [HttpPost , ActionName("Index")]
         public ActionResult DeleteAlert(int? id)
         {
@@ -57,6 +58,23 @@ namespace TODO_LIST.Controllers
 
         }
         
+        [Authorize]
+        public ActionResult Success(int? id)
+        {
+            if(id == null)
+            {
+                return HttpNotFound();
+            }
+
+            using (var db = new ApplicationDbContext())
+            {
+                db.Tasks.Find(id).IsMade = true;
+               
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+        }
 
         [Authorize]
         public ActionResult AddNew()
@@ -64,9 +82,19 @@ namespace TODO_LIST.Controllers
             return View();
         }
 
-        public ActionResult Modal()
+       [Authorize]
+       public ActionResult Finished()
         {
-            return View();
+            using (var db = new ApplicationDbContext())
+            {
+                var currentUserId = this.User.Identity.GetUserId();
+
+                var FinishedTasks = db.Tasks.Where(t => t.UserId == currentUserId && t.IsMade == true).ToList();
+
+               
+                return View(FinishedTasks);
+
+            }
         }
 
         [Authorize]

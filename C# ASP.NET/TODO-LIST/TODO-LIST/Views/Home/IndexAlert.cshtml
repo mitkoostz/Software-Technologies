@@ -3,13 +3,12 @@
 
 @{
     var rd = new Random();
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "View Task";
 }
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<h1 style="font: 50px arial bold; text-align:center">Current Tasks</h1>
 
-
-<br />
 
 @if (Request.IsAuthenticated)
 {
@@ -141,22 +140,21 @@
                               @using (Html.BeginForm())
                               {
 
-                              
-
-                                @*DELETE BUTTON*@
+                                @*DELETE btn*@
                                 <span id="alert_btn_delete" style="position: absolute;bottom: 20px;left: 150px;">
                                     <button type="submit" style="width:120px;height:60px; border-radius:15px; font: 22px arial bold" class="btn btn-danger">Delete</button>
                                 </span>
-
-                                @*SUCCESS BUTON*@
-                                <span id="alert_btn_succes" style="position: absolute;bottom: 20px;right: 170px;">
+                              }
+                                @*SUCCESS btn*@
+                                <span id="alert_btn_success" onclick="successClick(@ViewBag.Task.Id)" style="position: absolute;bottom: 20px;right: 170px;">
                                     <button type="button" style="width:120px;height:60px; border-radius:15px; font: 22px arial bold" class="btn btn-primary">Success</button>
                                 </span>
-                                @*BACK BUTTON*@
+
+                                @*BACK btn*@
                                 <div id="alert_btn_back" style="position: absolute;bottom: 20px;right: 300px;">
                                     <button type="button" style="width:120px;height:60px; border-radius:15px; font: 22px arial bold; text-align:center;" class="btn btn-info">Back</button>
                                 </div>
-                              }
+                              
 
                             </main>
 
