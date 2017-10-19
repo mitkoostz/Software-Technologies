@@ -48,26 +48,33 @@
             {
                 <li class="col-md-4 odd" id="Alert">
 
-                    <div class="alert alert-info alert-dismissable" onclick="GetID(@task.Id)" style=" border-radius:30px; background-color:@RandomBackground();" id="@task.Id">
-
-                        <script>
-                            element = document.getElementById(@task.Id);   
+                    <div class="alert alert-info alert-dismissable" onclick="GotoIndexAlert(id)" style=" border-radius:30px;background-color:#32B92D;" id="@task.Id">
 
                        
+                        <script>
+                            element = document.getElementById(@task.Id);   
+                   
 
                         element.addEventListener("mouseover", function () {
 
                             let item = document.getElementById(@task.Id);
 
-                            item.style.border = "6px solid black";                         
+                            item.style.border = "3px solid #003312";   
+
+                            item.style.textShadow = "1px 1px #000033";
+
                             });
+                            
+                            
+
 
 
                         element.addEventListener("mouseout", function () {
 
                            let item = document.getElementById(@task.Id);
 
-                           item.style.border = "";
+                            item.style.border = "";
+                            item.style.textShadow = "";
 
 
                         });
@@ -82,15 +89,13 @@
                             <strong>@task.Tittle</strong>
                         </header>
 
-                        <br />
+                       
 
                         <main class="text-center" style="font:25px arial; color:#00284d">
                             @task.Comment
+                            <br />                                                 
                         </main>
-                        <br />
-                        <br />
-                        <footer> </footer>
-                        <b style="position:fixed; ">@task.date</b>
+                                                                      
                     </div>
 
                 </li>
@@ -128,9 +133,7 @@
     }
 
  
- 
-<link href="~/Content/Modal.css" rel="stylesheet" />
-<script src="~/Scripts/Modal.js"></script>
+<script src="~/Scripts/ViewAlert.js"></script>
  <script src="~/Scripts/AlertMouseOver.js"></script>
 <link href="~/Content/Site.css" rel="stylesheet" />
 

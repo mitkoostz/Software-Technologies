@@ -10,8 +10,26 @@ namespace TODO_LIST.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
+
+            if(id != null)
+            {
+                using (var db = new ApplicationDbContext())
+                {
+                    var currentUserId = this.User.Identity.GetUserId();
+
+                    var UserTasks = db.Tasks.Where(t => t.UserId == currentUserId).ToList();
+
+                    ViewBag.Task = db.Tasks.Find(id);
+
+
+                    return View("IndexAlert",UserTasks);
+
+                }
+                
+            }
+
             using (var db = new ApplicationDbContext())
             {
                 var currentUserId = this.User.Identity.GetUserId();
@@ -85,6 +103,7 @@ namespace TODO_LIST.Controllers
         }
 
 
+        
         public ActionResult ViewAlert(int? id)
         {
             using (var db = new ApplicationDbContext())
